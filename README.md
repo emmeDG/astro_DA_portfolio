@@ -60,7 +60,7 @@ The `yml/ ` folder contains a `pycbc.yml` file to generate an appropriate conda 
 
 ## Example command
 
-`python generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py [-config [-case]] [-source_type]`
+`python ./scripts/generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py [-config [-case]] [-source_type]`
 
 ### Required arguments
 
