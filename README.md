@@ -44,7 +44,7 @@ This folder contains the following Jupyter notebooks:
 
 - `read_outputs.ipynb` some examples on how to read the `.pkl` files with the ouput of the CBC SNR analysis
 - `read_sens_curves_from_mat_to_txt.ipynb` reads the modified ET sensitivity curves in the `.mat` files and converts them into `.txt` files
-- 'Sources.ipynb' examples on how to read the astrophysical catalogs.
+- `Sources.ipynb` examples on how to read the astrophysical catalogs.
 
 ## scripts
 
