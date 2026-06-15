@@ -80,6 +80,25 @@ The procedure is:
 * Interpolate the desired ASD.
 * Color the white noise using the ASD.
 * Transform back to the time domain.
-* 
+  
 This produces realistic stationary Gaussian noise consistent with the specified detector sensitivity curve.
+
+## Signal Injection
+The projected waveform is injected into the simulated detector noise:
+$d(t)=n(t)+h(t)$
+
+where:
+
+* d(t) = observed data
+* n(t) = detector noise
+* h(t) = gravitational-wave signal
+
+## SNR Computation
+
+Detection performance is evaluated through matched filtering.
+
+For each detector:
+* Estimate the PSD of the simulated data.
+* Compute the matched-filter SNR time series.
+* Extract the maximum SNR.
 
