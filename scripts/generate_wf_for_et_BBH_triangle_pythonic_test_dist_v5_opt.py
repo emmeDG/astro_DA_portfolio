@@ -80,7 +80,7 @@ def print_program_info():
     print()
     print(art)
     
-    title = "\n           generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5.py\n"
+    title = "\n           generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py\n"
     
     info = {
         "Author": "Matteo Di Giovanni",
