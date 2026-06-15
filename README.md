@@ -68,11 +68,11 @@ To ensure the repeatability of the analysis and of the results, each time the co
 
 ### Required arguments
 
-'python generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py [-case] [-config] [-source_type]'
+'python generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py [-config [-case]] [-source_type]'
 
 | Argument       | Description                             |
 | -------------- | --------------------------------------- |
-| `-case`        | Detector site (SOS or TERZ)             |
+| `-case`        | Detector site (SOS or TERZ) (not needed if config = 2L)             |
 | `-config`      | Detector configuration (TRIANGLE or 2L) |
 | `-source_type` | Source population (BBH or BNS)          |
 | `-plots`       | Enable diagnostic plots                 |
