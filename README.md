@@ -111,3 +111,7 @@ The code relies on several scientific Python libraries:
 * Matplotlib
 * Astronomy
 * Astropy
+
+### Installation using conda
+
+`conda create --file ./yml/pycbc.yml`
