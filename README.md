@@ -44,9 +44,9 @@ The former contains some examples on how to read the `.pkl` files with the ouput
 This folder contains two scripts
 
 - `tf_plot.py`
-- `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v4.py`
+- `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py`
 
-The former is the script used to generate Figure 3 of the paper. The latter is the main code of the analysis, in particular:
+The former is the script used to generate a TF plot to illustrate the time-frequency evolution of one of the events contained in the catalogs. The latter is the main code of the analysis, in particular:
 
 - it reads the events from the COBA catalogs;
 - selects the events of interest for the paper;
@@ -60,8 +60,4 @@ To ensure the repeatability of the analysis and of the results, each time the co
 
 ## pkl
 
-Contains the .pkl files with the output of the analysis from the code `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v4.py` which can be read using `notebooks/read_outputs.ipynb`.
-
-## paper
-
-Contains the .tex of the paper **_The impact of local noise recorded at the ET candidate sites on the signal to noise ratio of CBC gravitational wave signals for the ET triangle configuration_**
+Contains the .pkl files with the output of the analysis from the code `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py` which can be read using `notebooks/read_outputs.ipynb`.
