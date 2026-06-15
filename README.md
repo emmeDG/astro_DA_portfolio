@@ -66,6 +66,31 @@ The former is the script used to generate a TF plot to illustrate the time-frequ
 
 To ensure the repeatability of the analysis and of the results, each time the code runs the noise is generated using the same random seed.
 
+### Workflow
+
+```mermaid
+flowchart TD
+
+A[Load Catalog]
+B[Generate Waveform]
+C[Project on Detectors]
+D[Generate Colored Noise]
+E[Inject Signal]
+F[Estimate PSD]
+G[Matched Filter]
+H[Compute Network SNR]
+I[Save Results]
+
+A --> B
+B --> C
+C --> D
+D --> E
+E --> F
+F --> G
+G --> H
+H --> I
+```
+
 ## pkl
 
 Contains the .pkl files with the output of the analysis from the code `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py` which can be read using `notebooks/read_outputs.ipynb`.
