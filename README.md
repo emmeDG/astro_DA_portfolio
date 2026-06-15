@@ -1,8 +1,16 @@
 # ET GLITCHNESS
 
+## Project Overview
+
 This repository contains all the material used for the analysis of the paper **_The impact of local noise recorded at the ET candidate sites on the signal to noise ratio of CBC gravitational wave signals for the ET triangle configuration_**.
 
+This Python application simulates gravitational-wave observations for future detector networks based on the Einstein Telescope (ET) concept.
+The pipeline generates astrophysical waveforms from compact binary coalescences, injects them into simulated detector noise, and evaluates the detectability of each event through matched-filter signal-to-noise ratio (SNR) calculations.
+The code was developed to study the impact of different detector configurations and environmental noise conditions on the observability of gravitational-wave sources.
+
 The sensitivity curves of the detector are modified using the ET noise budget created with GWINC and available at `git clone https://gitlab.et-gw.eu/et/isb/interferometer/ET-NoiseBudget`. We substiuted the NN contribution with Equation 1 of the paper to get the new sensitivity curves.
+
+More detailed information about this repository's contents can be found in the 'docs/' folder.
 
 ## Needed python modules
 
