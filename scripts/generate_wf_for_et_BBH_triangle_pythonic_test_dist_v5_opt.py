@@ -1,11 +1,11 @@
 # Main code to generate signals, noise and calculating the SNR over the signals injected in noise
-# generate_wf_for_et_BBH_triangle_pythonic_test_dist.py
+# generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py
 # Version 4.0
 # Main code to generate signals, noise and calculating the SNR over the signals injected in noise
 
-##### © MATTEO DI GIOVANNI 2024
-##### MATTEO.DIGIOVANNI@UNIROMA1.IT
-##### LA SAPIENZA UNIVERSITA' DI ROMA
+##### © MATTEO DI GIOVANNI 2024 2026
+##### MATTEO.DIGIOVANNI@SNS.IT
+##### SCUOLA NORMALE SUPERIORE
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -21,9 +21,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
 # USA.
-
-
-# HERE WE DEFINE THE FUNCTIONS THAT WILL BE USED LATER IN THE SCRIPT
 
 def print_program_info():
     
