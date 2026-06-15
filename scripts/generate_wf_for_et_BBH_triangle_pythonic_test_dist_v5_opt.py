@@ -27,7 +27,18 @@
 
 def print_program_info():
     
-    """Stampa un titolo centrato e un riquadro di informazioni sul programma."""
+    # Display program banner and metadata.
+
+    # Prints an ASCII-art header together with program information such as
+    # author, version, release date, license and copyright notice.
+
+    # This function is intended for command-line execution and provides
+    # a visual summary of the software before the analysis starts.
+
+    # Returns
+    # -------
+    # None
+    
     print('\n\n')
     BLUE = "\033[34m"
     RESET = "\033[0m"  
@@ -139,6 +150,28 @@ def progress_bar(iteration: int, total: int, prefix: str = '', ETA: float = 0, d
 
 def azimuth(lat1,lon1,lat2,lon2):
 
+    # Compute the azimuth between two geographical coordinates.
+
+    #The azimuth is measured clockwise from geographic North and is
+    #used to determine interferometer arm orientations from detector
+    #vertex coordinates.
+
+    #Parameters
+    #----------
+    #lat1 : float
+    #    Latitude of the starting point in degrees.
+    #lon1 : float
+    #    Longitude of the starting point in degrees.
+    #lat2 : float
+    #    Latitude of the destination point in degrees.
+    #lon2 : float
+    #    Longitude of the destination point in degrees.
+
+    #Returns
+    #-------
+    #float
+    #    Azimuth angle in degrees in the range [0, 360).
+
     lat1, lon1 = np.radians(lat1), np.radians(lon1)
     lat2, lon2 = np.radians(lat2), np.radians(lon2)
 
@@ -155,7 +188,31 @@ def azimuth(lat1,lon1,lat2,lon2):
 
 def noise_from_sqrt_psd(old_freq, sqrt_psd, fs, dur, seed):    #dur=sample   sample=fs*dur
     
-    # GENERATE WHITE NOISE AND COLOR IT WITH THE WANTED SENSITIVITY CURVE
+
+    #Generate stationary Gaussian colored noise from a target ASD.
+
+    #White Gaussian noise is generated in the frequency domain and
+    #subsequently shaped using the provided amplitude spectral density
+    #(ASD). The resulting noise is transformed back into the time domain.
+
+    #Parameters
+    #----------
+    #old_freq : ndarray
+    #    Frequency array associated with the input ASD.
+    #sqrt_psd : ndarray
+    #    Amplitude spectral density values.
+    #fs : int
+    #    Sampling frequency in Hz.
+    #dur : int
+    #    Duration of the generated noise in seconds.
+    #seed : int
+    #    Seed used to initialize the random number generator.
+
+    #Returns
+    #-------
+    #ndarray
+    #    Time-domain colored noise realization.
+
 
     frequencies = np.linspace(0, fs // 2, dur * fs // 2 + 1)
 
@@ -180,7 +237,26 @@ def noise_from_sqrt_psd(old_freq, sqrt_psd, fs, dur, seed):    #dur=sample   sam
     
 def read_txt(filename):
     
-    # READ .TXT FILES
+
+    #Read a two-column text file.
+
+    #The function is primarily used to load detector sensitivity curves,
+    #where the first column contains frequency values and the second
+    #column contains ASD values.
+
+    #Parameters
+    #----------
+    #filename : str
+    #    Path to the text file.
+
+    #Returns
+    #-------
+    #tuple of ndarray
+    #    Tuple containing:
+
+    #    - frequency array
+    #    - data array
+
     
     with open(filename) as inf:
         reader = csv.reader(inf, delimiter=" ")
@@ -196,7 +272,28 @@ def read_txt(filename):
 
 def wf_timeseries(gps_start, quad, time, fs):
         
-    ## GENERATE WF TIMESERIES
+
+    #Convert waveform data into a GWPy TimeSeries object.
+
+    #The waveform is tapered to reduce edge effects and assigned
+    #the requested GPS start time.
+
+    #Parameters
+    #----------
+    #gps_start : float
+    #    GPS start time of the waveform.
+    #quad : array_like
+    #    Waveform strain samples.
+    #time : array_like
+    #    Time vector associated with the waveform.
+    #fs : int
+    #    Sampling frequency in Hz.
+
+    #Returns
+    #-------
+    #gwpy.timeseries.TimeSeries
+    #    Tapered waveform time series.
+
 
     signal_ts    = TimeSeries(quad, sample_rate = fs, t0 = gps_start, times = time)
     #signal_ts    = signal_ts.resample(rate = 4096) # Sampling rate of waveform and noise must be the same
@@ -207,7 +304,30 @@ def wf_timeseries(gps_start, quad, time, fs):
 
 def welch_method(time_strain, fs, seg_len_secs):
     
-    # CALCULATE PSD WITH THE WELCH METHOD
+    #Estimate the power spectral density using Welch's method.
+
+    #Computes one-sided and two-sided PSD estimates together with the
+    #corresponding amplitude spectral densities (ASDs).
+
+    #Parameters
+    #----------
+    #time_strain : array_like
+    #    Input strain time series.
+    #fs : int
+    #    Sampling frequency in Hz.
+    #seg_len_secs : float
+    #    Segment length used for Welch averaging, expressed in seconds.
+
+    #Returns
+    #-------
+    #tuple
+    #    Contains:
+
+    #    - one-sided frequency array
+    #    - one-sided ASD
+    #    - two-sided frequency array
+    #    - two-sided ASD
+
     
     dt              = 1/fs                   # dt time interval
     N               = len(time_strain)       # dur*fs
@@ -228,7 +348,27 @@ def welch_method(time_strain, fs, seg_len_secs):
 
 def inject(ts, gps_start, filename, time, fs):
     
-    # INJECT SIGNALS IN NOISE
+
+    #Inject a gravitational-wave signal into a noise realization.
+
+    #Parameters
+    #----------
+    #ts : array_like
+    #    Noise time series.
+    #gps_start : float
+    #    GPS start time of the noise segment.
+    #filename : pycbc.types.TimeSeries
+    #    Signal waveform to be injected.
+    #time : array_like
+    #    Time samples associated with the waveform.
+    #fs : int
+    #    Sampling frequency in Hz.
+
+    #Returns
+    #-------
+    #gwpy.timeseries.TimeSeries
+    #    Noise plus injected signal.
+
     
     signal_ts = wf_timeseries(filename.start_time, filename, time, fs)
     ts        = TimeSeries(ts, t0 = gps_start, sample_rate = fs)
@@ -237,19 +377,64 @@ def inject(ts, gps_start, filename, time, fs):
     return data
     
 def unifom_dist(N, xmin, xmax):  # generate uniform distribution
+
+    #Generate samples from a uniform distribution.
+
+    #Parameters
+    #----------
+    #N : int
+    #    Number of samples to generate.
+    #xmin : float
+    #    Lower bound of the distribution.
+    #xmax : float
+    #    Upper bound of the distribution.
+
+    #Returns
+    #-------
+    #list of float
+    #    Uniformly distributed random values.
+
+    
     distr_gps_times = []
     for _ in range(N):
         x = random.uniform(xmin, xmax)
         distr_gps_times.append(x)
     return distr_gps_times
 
-def normalize_to_01(vector):   # Normalize in [0, 1]
+def normalize_to_01(vector):   
+
+    #Normalize an array to the interval [0, 1].
+
+    #Parameters
+    #----------
+    #vector : ndarray
+    #    Input array.
+
+    #Returns
+    #-------
+    #ndarray
+    #    Normalized array with minimum value 0 and maximum value 1.
+
     min_val = np.min(vector)
     max_val = np.max(vector)
     normalized_vector = (vector - min_val) / (max_val - min_val)
     return normalized_vector
 
 class BBH:
+
+        #Configuration container for Binary Black Hole analyses.
+
+        #Attributes
+        #----------
+        #catalogName : str
+        #    Path to the BBH population catalog.
+        #apx : str
+        #    Waveform approximant used for signal generation.
+        #fs : int
+        #    Sampling frequency in Hz.
+        #f_lower : float
+        #    Lower frequency cutoff for waveform generation.
+
         def __init__(self):
             self.catalogName = '../catalogs/18321_1yrCatalogBBH.h5'   #BBH
             self.apx         = 'IMRPhenomD' #'IMRPhenomD' 'IMRPhenomPv2_NRTidalv2'
@@ -257,6 +442,20 @@ class BBH:
             self.f_lower     = 1
             
 class BNS:
+    
+        #Configuration container for Binary Neutron Star analyses.
+
+        #Attributes
+        #----------
+        #catalogName : str
+        #    Path to the BNS population catalog.
+        #apx : str
+        #    Waveform approximant used for signal generation.
+        #fs : int
+        #    Sampling frequency in Hz.
+        #f_lower : float
+        #   Lower frequency cutoff for waveform generation.
+
         def __init__(self):
             self.catalogName = '../catalogs/18321_1yrCatalogBNS.h5'   #BBH
             self.apx         = 'IMRPhenomPv2_NRTidalv2' #'IMRPhenomD' 'IMRPhenomPv2_NRTidalv2'
