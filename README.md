@@ -105,4 +105,19 @@ H --> I
 
 ## pkl
 
-Contains the .pkl files with the output of the analysis from the code `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py` which can be read using `notebooks/read_outputs.ipynb`.
+Contains the .pkl files with the output of the analysis from the code `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py` which can be read using `notebooks/read_outputs.ipynb` (see also next section).
+
+## Key Dependencies
+The code relies on several scientific Python libraries:
+### Gravitational-Wave Analysis
+* PyCBC
+* GWPy
+* LALSuite
+### Scientific Computing
+* NumPy
+* SciPy
+* h5py
+### Visualization
+* Matplotlib
+* Astronomy
+* Astropy
