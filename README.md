@@ -66,6 +66,18 @@ The former is the script used to generate a TF plot to illustrate the time-frequ
 
 To ensure the repeatability of the analysis and of the results, each time the code runs the noise is generated using the same random seed.
 
+### Required arguments
+
+'python generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py [-case] [-config] [-source_type]'
+
+| Argument       | Description                             |
+| -------------- | --------------------------------------- |
+| `-case`        | Detector site (SOS or TERZ)             |
+| `-config`      | Detector configuration (TRIANGLE or 2L) |
+| `-source_type` | Source population (BBH or BNS)          |
+| `-plots`       | Enable diagnostic plots                 |
+
+
 ### Workflow
 
 ```mermaid
