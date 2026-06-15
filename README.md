@@ -49,12 +49,11 @@ The former contains some examples on how to read the `.pkl` files with the ouput
 
 ## scripts
 
-This folder contains two scripts
+This folder contains one scripts
 
-- `tf_plot.py`
 - `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py`
 
-The former is the script used to generate a TF plot to illustrate the time-frequency evolution of one of the events contained in the catalogs. The latter is the main code of the analysis, in particular:
+This is the main code of the analysis, in particular:
 
 - it reads the events from the COBA catalogs;
 - selects the events of interest for the paper;
