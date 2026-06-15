@@ -10,7 +10,7 @@ The code was developed to study the impact of different detector configurations 
 
 The sensitivity curves of the detector are modified using the ET noise budget created with GWINC and available at `git clone https://gitlab.et-gw.eu/et/isb/interferometer/ET-NoiseBudget`. We substiuted the NN contribution with Equation 1 of the paper to get the new sensitivity curves.
 
-More detailed information about this repository's contents can be found in the 'docs/' folder.
+More detailed information about this repository's scientific context can be found in the `docs/` folder.
 
 ## Needed python modules
 
@@ -103,7 +103,7 @@ H --> I
 
 ## pkl
 
-Contains the .pkl files with the output of the analysis from the code `generate_wf_for_et_BBH_triangle_pythonic_test_dist_v5_opt.py` which can be read using `notebooks/read_outputs.ipynb` (see also next section).
+The `yml/ ` folder contains a `pycbc.yml` file to generate an appropriate conda environment to run the analysis and includes only the essential modules. The analysis works also on the `igwn` environment available at: `https://computing.docs.ligo.org/conda/environments/`. This contains also modules which are not needed and may require some time to create the virtual environment (see also next section).
 
 ## Key Dependencies
 The code relies on several scientific Python libraries:
